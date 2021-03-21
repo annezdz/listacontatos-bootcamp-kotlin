@@ -77,13 +77,38 @@ class HelperDB(
         db.close()
     }
 
-    fun deletarCoontato(id: Int) {
+    /*****************************************************************************************
+     *                       Função Salvar por Função                                        *
+     *                                                                                       *
+     * fun salvarContato1(contato: ContatosVO){                                              *
+     *  val db = writableDatabase ?: return                                                  *
+     *  val sql = "INSERT INTO $TABLE_NAME($COLUMNS_NOME, $COLUMNS_TELEFONE) VALUES(?,?)"    *
+     *  var array = arrayOf(contato.nome, contato.telefone)                                  *
+     *  db.execSQL(sql,array)                                                                *
+     *  db.close()                                                                           *
+    }*****************************************************************************************/
+
+    //Função Delete implementada com SQL por extenso
+
+    fun deletarContato(id: Int) {
         val db = writableDatabase ?: return
         val sql = "DELETE FROM $TABLE_NAME WHERE $COLUMNS_ID = ?"
         val arg = arrayOf("$id")
         db.execSQL(sql,arg)
         db.close()
     }
+
+
+    /*********************************************
+     *          Função Delete por função         *
+     *                                           *
+     * fun deletarContatoFuncao(id:Int){         *
+     *  val db = writableDatabase ?: return      *
+     *  var where = "id = ?"                     *
+     *  val arg:Array<String> = arrayOf("$id")   *
+     *  db.delete(TABLE_NAME,where,arg)          *
+     *  db.close()                               *
+    }*********************************************/
 
     fun updateContato(contato: ContatosVO) {
         val db = writableDatabase ?: return
@@ -92,4 +117,20 @@ class HelperDB(
         db.execSQL(sql,arg)
         db.close()
     }
+    // Função Update por função
+
+    /***************************************************************
+     *             função Update por função                        *
+     *                                                             *
+     * fun updateContatoporFuncao(contato: ContatosVO) {           *
+     *  val db = writableDatabase ?: return                        *
+     *  val content = ContentValues()                              *
+     *  val where = "id =?"                                        *
+     *  val arg = arrayOf("${contato.id}")                         *
+     *  content.put(COLUMNS_NOME,contato.nome)                     *
+     *  content.put(COLUMNS_TELEFONE,contato.telefone)             *
+     *  db.update(TABLE_NAME,content,where,arg)                    *
+     *  db.close()                                                 *
+     *  }                                                          *
+     ****************************************************************/
 }

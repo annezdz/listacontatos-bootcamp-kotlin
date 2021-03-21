@@ -68,7 +68,7 @@ class ContatoActivity : BaseActivity() {
             progress.visibility = View.VISIBLE
             Thread(Runnable {
                 Thread.sleep(1500)
-                ContatoApplication.instance.helperDB?.deletarCoontato(idContato)
+                ContatoApplication.instance.helperDB?.deletarContato(idContato)
                 runOnUiThread {
                     progress.visibility = View.GONE
                     finish()
@@ -76,4 +76,11 @@ class ContatoActivity : BaseActivity() {
             }).start()
         }
     }
+
+    /*fun onClickExcluirContatoFuncao(view: View) {
+        if(idContato > -1){
+            ContatoApplication.instance.helperDB?.deletarContato(idContato)
+            finish()
+        }
+    }*/
 }
